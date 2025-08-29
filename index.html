@@ -13,46 +13,73 @@
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="flex justify-center items-center bg-white">
+  <body class="flex justify-center items-center min-h-screen bg-white px-4">
     <!-- Container -->
-    <div class="w-96 h-full rounded-3xl p-8 bg-[#f4f5f7]">
-      <!-- logo center -->
-      <div class="h-40 bg-[url('./assets/bg.png')] bg-cover relative">
+    <div
+      class="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl bg-[#f4f5f7] rounded-3xl shadow-md p-6 sm:p-8"
+    >
+      <!-- Logo Section -->
+      <div
+        class="h-32 sm:h-40 md:h-48 lg:h-56 bg-[url('./assets/bg.png')] bg-cover  rounded-t-3xl relative"
+      >
+        <div class="w-40 h-40 bg-gradient-to-t from-white to-blue-100 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 z-10"></div>
+
         <img
           src="assets/Group.png"
-          alt=" "
-          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          alt="Logo"
+          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/5 z-20"
         />
       </div>
-      <!-- login form  -->
+
       <!-- Login Card -->
-      <div class="bg-white shadow-md rounded-2xl px-8 pt-14 pb-8">
+      <div class="bg-white shadow-md rounded-2xl px-6 sm:px-8 pt-12 pb-8 mt-4">
         <!-- Mobile Number -->
-        <label class="block text-sm font-medium text-gray-700 mb-1"
+        <label class="block text-sm sm:text-base font-medium text-gray-700 mb-1"
           >Mobile Number</label
         >
         <input
           type="text"
           placeholder="Enter your number"
-          class="w-full mb-4 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#f4f5f7]"
+          class="w-full mb-4 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#f4f5f7] text-sm sm:text-base"
         />
 
         <!-- 4 Digit Pin -->
-        <label class="block text-sm font-medium text-gray-700 mb-1"
+        <label class="block text-sm sm:text-base font-medium text-gray-700 mb-1"
           >4 Digit Pin</label
         >
         <input
           type="password"
           maxlength="4"
           placeholder="Enter 4 Digit Pin"
-          class="w-full mb-6 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#f4f5f7] z-10"
+          class="w-full mb-2 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#f4f5f7] text-sm sm:text-base"
         />
+
+        <!-- Forgot Pin -->
+        <div class="text-right mb-6">
+          <a href="#" class="text-sm sm:text-base text-blue-600 hover:underline"
+            >Forgot PIN?</a
+          >
+        </div>
 
         <!-- Login Button -->
         <button
-          class="w-full py-3 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 transition"
+          class="w-full py-3 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 transition text-sm sm:text-base"
         >
           Login
+        </button>
+
+        <!-- Divider -->
+        <div class="flex items-center my-6">
+          <hr class="flex-grow border-gray-300" />
+          <span class="px-2 text-gray-500 text-sm">OR</span>
+          <hr class="flex-grow border-gray-300" />
+        </div>
+
+        <!-- Sign Up Button -->
+        <button
+          class="w-full py-3 bg-gray-200 text-gray-800 font-medium rounded-full hover:bg-gray-300 transition text-sm sm:text-base"
+        >
+          Create Account
         </button>
       </div>
     </div>
