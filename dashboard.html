@@ -1,11 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboard </title>
-</head>
-<body>
-    <h1>dashboard</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payooo dashboard</title>
+    <!-- DaisyUI -->
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <div class="flex items-center justify-center bg-gray-100">
+      <div class="bg-white p-6 rounded shadow-lg w-96 h-full">
+        <!-- Card -->
+        <div
+          class="card bg-gray-100 text-gray-600 shadow-md p-4 flex flex-row items-center justify-between"
+        >
+          <!-- Left Side (Image + Text) -->
+          <div class="flex items-center w-full bottom-1">
+            <figure>
+              <img src="./assets/Group.png" alt="Balance" class="w-10 h-10" />
+            </figure>
+            <div class="flex flex-col justify-center ml-4">
+              <span class="text-xl font-bold text-left">45000$</span>
+              <p class="text-sm text-gray-500 text-left">Available Balance</p>
+            </div>
+          </div>
+
+          <!-- Right Side (Button) -->
+          <button class="btn btn-error btn-sm">
+            <i class="fa-solid fa-right-from-bracket rotate-180"></i>Logout
+          </button>
+        </div>
+        <!-- wellcome section -->
+        <div class="text-leftflex flex-col items-center mt-8">
+          <h2 class="text-2xl font-semibold text-gray-700 mb-2">
+            🔥 Welcome to Payooo!
+          </h2>
+          <p class="text-gray-600 text-sm">
+            Enjoy easy and convenient financial services with us. Cashout charge
+            is low and
+          </p>
+          <div class="grid grid-cols-3 gap-4 mt-4">
+            <!-- Add Money -->
+            <div
+              class="card bg-gray-100 shadow-md flex flex-col items-center justify-center p-4 hover:shadow-lg transition"
+            >
+              <img src="/assets/wallet1.png" alt="Add Money" class="" />
+              <span
+                class="text-[10px] mt-2 font-medium text-justify text-gray-500"
+                >Add Money</span
+              >
+            </div>
+
+            <!-- Cashout -->
+            <div
+              class="card bg-gray-100 shadow-md flex flex-col items-center p-4 hover:shadow-lg transition"
+            >
+              <img src="/assets/send1.png" alt="Cashout" class="" />
+              <span
+                class="text-[10px] mt-2 font-medium text-justify text-gray-500"
+                >Cashout</span
+              >
+            </div>
+
+            <!-- Transfer Money -->
+            <div
+              class="card bg-gray-100 shadow-md flex flex-col justify-center items-center hover:shadow-lg transition"
+            >
+              <img src="/assets/money1.png" alt="Transfer Money" class="" />
+              <span
+                class="text-[10px] mt-2 font-medium text-justify text-gray-500"
+                >Transfer Money</span
+              >
+            </div>
+
+            <!-- Get Bonus -->
+            <div
+              class="card bg-gray-100 shadow-md flex flex-col items-center justify-center p-4 hover:shadow-lg transition"
+            >
+              <img src="/assets/bonus1.png" alt="Get Bonus" class="" />
+              <span
+                class="text-[10px] mt-2 font-medium text-justify text-gray-500"
+                >Get Bonus</span
+              >
+            </div>
+
+            <!-- Pay Bill -->
+            <div
+              class="card bg-gray-100 shadow-md flex flex-col items-center justify-center p-4 hover:shadow-lg transition"
+            >
+              <img src="/assets/purse1.png" alt="Pay Bill" class="" />
+              <span
+                class="text-[10px] mt-2 font-medium text-justify text-gray-500"
+                >Pay Bill</span
+              >
+            </div>
+
+            <!-- Transaction History -->
+            <div
+              class="card bg-gray-100 shadow-md flex flex-col items-center justify-center p-4 hover:shadow-lg transition"
+            >
+              <img
+                src="/assets/transaction1.png"
+                alt="Transaction History"
+                class=""
+              />
+              <span
+                class="text-[9px] mt-2 font-medium text-justify text-gray-500"
+                >Transaction History</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <!-- Add Money Form -->
+        <div
+          id="fromhere"
+          class="mt-6 p-6 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto"
+        >
+          <h2 class="text-xl font-semibold mb-4">ADD MONEY</h2>
+
+          <!-- Select Bank -->
+          <div class="form-control mb-4">
+            <label class="label">
+              <span class="label-text">Select Bank</span>
+            </label>
+            <select class="select select-bordered w-full">
+              <option disabled selected>Choose Bank</option>
+              <option>DBBL</option>
+              <option>Islami Bank</option>
+              <option>City Bank</option>
+              <option>Brac Bank</option>
+            </select>
+          </div>
+
+          <!-- Account Number -->
+          <div class="form-control mb-4">
+            <label class="label">
+              <span class="label-text">Bank Account Number</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter account number"
+              class="input input-bordered w-full"
+            />
+          </div>
+
+          <!-- Amount -->
+          <div class="form-control mb-4">
+            <label class="label">
+              <span class="label-text">Amount to Send</span>
+            </label>
+            <input
+              type="number"
+              placeholder="Enter amount"
+              class="input input-bordered w-full"
+            />
+          </div>
+
+          <!-- PIN -->
+          <div class="form-control mb-6">
+            <label class="label">
+              <span class="label-text">PIN Number</span>
+            </label>
+            <input
+              type="password"
+              placeholder="Enter PIN"
+              class="input input-bordered w-full"
+            />
+          </div>
+
+          <!-- Submit Button -->
+          <button class="btn btn-primary w-full">Submit</button>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
