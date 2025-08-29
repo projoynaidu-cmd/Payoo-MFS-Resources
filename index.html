@@ -1,11 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payooo! Mobile App</title>
+    <!-- DaisyUI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class=" flex justify-center items-center bg-white">
+    <!-- Container -->
+    <div class="w-96 rounded-3xl p-8  bg-[#f4f5f7]">
+      <!-- Logo Section -->
+      <div class="relative flex justify-center items-center -mb-12 h-[250px]">
+        <!-- Half Circle Gradient -->
+        <!-- <div
+          class="w-40 h-40 bg-gradient-to-t from-white to-blue-100 rounded-full absolute top-20 z-0"
+        ></div> -->
+
+        <!-- Background Image -->
+        <img
+          src="assets/bg.png"
+          alt="background"
+          class="absolute z-0 top-1/4 left-1/1 w-full h-full object-contain"
+        />
+
+
+
+        <!-- Center Logo -->
+        <img
+          src="assets/Group.png"
+          alt="logo"
+          class="w-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+        />
+      </div>
+      <!-- Login Card -->
+      <div class="bg-white shadow-md rounded-2xl px-8 pt-14 pb-8">
+        <!-- Mobile Number -->
+        <label class="block text-sm font-medium text-gray-700 mb-1"
+          >Mobile Number</label
+        >
+        <input
+          type="text"
+          placeholder="Enter your number"
+          
+          class="w-full mb-4 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#f4f5f7]"
+        />
+
+        <!-- 4 Digit Pin -->
+        <label class="block text-sm font-medium text-gray-700 mb-1"
+          >4 Digit Pin</label
+        >
+        <input
+          type="password"
+          maxlength="4"
+          placeholder="Enter 4 Digit Pin"
+          class="w-full mb-6 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#f4f5f7] z-10"
+        />
+
+        <!-- Login Button -->
+        <button
+          class="w-full py-3 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700 transition"
+        >
+          Login
+        </button>
+      </div>
+    </div>
+  </body>
 </html>
