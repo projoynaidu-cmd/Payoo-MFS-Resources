@@ -55,7 +55,7 @@
         />
 
         <!-- Forgot Pin -->
-        <div class="text-right mb-6">
+        <div class="text-right mb-6" id="forgot-pin">
           <a href="#" class="text-sm sm:text-base text-blue-600 hover:underline"
             >Forgot PIN?</a
           >
@@ -83,6 +83,33 @@
         </button>
       </div>
     </div>
+
+      <!-- DaisyUI Modal for Forgot PIN -->
+    <dialog id="forgot_modal" class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">🔑 Reset PIN</h3>
+        <p class="py-2 text-sm text-gray-600">
+          Enter your registered mobile number to reset your PIN.
+        </p>
+        <input
+          type="text"
+          placeholder="Enter your mobile number"
+          class="w-full mb-4 px-4 py-3 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-[#f4f5f7]"
+        />
+        <div class="modal-action">
+          <form method="dialog" class="w-full flex justify-between">
+            <!-- Close -->
+            <button class="btn btn-sm bg-gray-200 rounded-full px-6">
+              Cancel
+            </button>
+            <!-- Reset -->
+            <button class="btn btn-sm bg-blue-600 text-white rounded-full px-6">
+              Send Reset Link
+            </button>
+          </form>
+        </div>
+      </div>
+    </dialog>
     <script src="script.js"></script>
   </body>
 </html>
