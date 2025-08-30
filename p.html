@@ -3,96 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Payooo! Mobile App</title>
     <!-- DaisyUI -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.css"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.css" rel="stylesheet" type="text/css">
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<div class="max-w-lg mx-auto mt-6">
-  <!-- Cards -->
-  <div class="grid grid-cols-2 gap-4">
-    <!-- Card 1 -->
-    <div onclick="showTab('add-money')" 
-         class="card bg-gray-100 text-gray-600 shadow-md p-4 cursor-pointer hover:bg-gray-200 transition">
-      <span class="font-bold">Add Money</span>
+<body class="bg-gray-100">
+
+    <div class="flex justify-center items-center min-h-screen">
+        <!-- Main Container -->
+        <div class="bg-white p-6 rounded shadow-lg w-96 h-full">
+            <!-- Cards Section -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+                <!-- Add Money Card -->
+                <div class="card bg-gray-100 shadow-md p-4 flex flex-col items-center justify-center cursor-pointer" data-target="add-money-form">
+                    <img src="/assets/wallet1.png" alt="Add Money" />
+                    <span class="text-[10px] mt-2 text-gray-500">Add Money</span>
+                </div>
+
+                <!-- Cashout Card -->
+                <div class="card bg-gray-100 shadow-md p-4 flex flex-col items-center justify-center cursor-pointer" data-target="cashout-form">
+                    <img src="/assets/send1.png" alt="Cashout" />
+                    <span class="text-[10px] mt-2 text-gray-500">Cashout</span>
+                </div>
+
+                <!-- Transfer Money Card -->
+                <div class="card bg-gray-100 shadow-md p-4 flex flex-col items-center justify-center cursor-pointer" data-target="transfer-form">
+                    <img src="/assets/money1.png" alt="Transfer Money" />
+                    <span class="text-[10px] mt-2 text-gray-500">Transfer Money</span>
+                </div>
+            </div>
+
+            <!-- Forms Section -->
+            <!-- Add Money Form -->
+            <div id="add-money-form" class="form-container hidden  p-6 bg-gray-100 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-semibold mb-4">ADD MONEY</h2>
+                <div class="form-control mb-4">
+                    <label class="label">Select Bank</label>
+                    <select class="select select-bordered w-full">
+                        <option disabled selected>Choose Bank</option>
+                        <option>DBBL</option>
+                        <option>Islami Bank</option>
+                        <option>City Bank</option>
+                        <option>Brac Bank</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary w-full">Add Money</button>
+            </div>
+
+            <!-- Cashout Form -->
+            <div id="cashout-form" class="form-container hidden p-6 bg-gray-100 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-semibold mb-4">CASHOUT</h2>
+                <div class="form-control mb-4">
+                    <label class="label">Account Number</label>
+                    <input type="text" class="input input-bordered w-full" placeholder="Enter Account Number" />
+                </div>
+                <button class="btn btn-primary w-full">Cashout</button>
+            </div>
+
+            <!-- Transfer Form -->
+            <div id="transfer-form" class="form-container hidden p-6 bg-gray-100 rounded-lg shadow-md mb-6">
+                <h2 class="text-xl font-semibold mb-4">TRANSFER MONEY</h2>
+                <div class="form-control mb-4">
+                    <label class="label">Recipient Account Number</label>
+                    <input type="text" class="input input-bordered w-full" placeholder="Enter Recipient's Account Number" />
+                </div>
+                <button class="btn btn-primary w-full">Transfer Money</button>
+            </div>
+        </div>
     </div>
 
-    <!-- Card 2 -->
-    <div onclick="showTab('send-money')" 
-         class="card bg-gray-100 text-gray-600 shadow-md p-4 cursor-pointer hover:bg-gray-200 transition">
-      <span class="font-bold">Send Money</span>
-    </div>
+    <script>
+      // Function to show form based on the clicked card
+const showForm = (formToShow) => {
+    // Hide all forms
+    const forms = document.querySelectorAll('.form-container');
+    forms.forEach(form => form.classList.add('hidden'));
 
-    <!-- Card 3 -->
-    <div onclick="showTab('history')" 
-         class="card bg-gray-100 text-gray-600 shadow-md p-4 cursor-pointer hover:bg-gray-200 transition">
-      <span class="font-bold">Transaction History</span>
-    </div>
-  </div>
+    // Show the selected form
+    formToShow.classList.remove('hidden');
+}
 
-  <!-- Forms / Tabs -->
-  <div class="mt-6">
-    <!-- Add Money -->
-    <div id="add-money" class="tab-content hidden">
-      <h2 class="text-xl font-bold mb-2">Add Money</h2>
-      <label class="form-control mb-2">
-        <span class="label-text">Select Bank</span>
-        <select class="select select-bordered">
-          <option>DBBL</option>
-          <option>BRAC</option>
-          <option>City Bank</option>
-        </select>
-      </label>
-      <label class="form-control mb-2">
-        <span class="label-text">Account Number</span>
-        <input type="text" class="input input-bordered" />
-      </label>
-      <label class="form-control mb-2">
-        <span class="label-text">Amount</span>
-        <input type="number" class="input input-bordered" />
-      </label>
-      <label class="form-control mb-2">
-        <span class="label-text">PIN</span>
-        <input type="password" class="input input-bordered" />
-      </label>
-      <button class="btn btn-primary w-full">Submit</button>
-    </div>
+// Event listener setup for each card
+const cards = document.querySelectorAll('.card');  // Select all cards
+cards.forEach(card => {
+    card.addEventListener('click', (e) => {
+        // Get the target form ID from the data-target attribute
+        const targetForm = document.getElementById(e.target.closest('.card').dataset.target);
+        
+        // Show the corresponding form
+        showForm(targetForm);
+    });
+});
 
-    <!-- Send Money -->
-    <div id="send-money" class="tab-content hidden">
-      <h2 class="text-xl font-bold mb-2">Send Money</h2>
-      <label class="form-control mb-2">
-        <span class="label-text">Receiver Number</span>
-        <input type="text" class="input input-bordered" />
-      </label>
-      <label class="form-control mb-2">
-        <span class="label-text">Amount</span>
-        <input type="number" class="input input-bordered" />
-      </label>
-      <button class="btn btn-success w-full">Send</button>
-    </div>
-
-    <!-- History -->
-    <div id="history" class="tab-content hidden">
-      <h2 class="text-xl font-bold mb-2">Transaction History</h2>
-      <p class="text-gray-500">No history available yet...</p>
-    </div>
-  </div>
-</div>
-
-<script>
-  function showTab(tabId) {
-    document.querySelectorAll(".tab-content").forEach(tab => tab.classList.add("hidden"));
-   // document.getElementById(tabId).classList.remove("hidden");
-    console.log(tabId);
-  }
-</script>
-
+    </script>
 </body>
 </html>
