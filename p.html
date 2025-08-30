@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- DaisyUI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<div class="max-w-lg mx-auto mt-6">
+  <!-- Cards -->
+  <div class="grid grid-cols-2 gap-4">
+    <!-- Card 1 -->
+    <div onclick="showTab('add-money')" 
+         class="card bg-gray-100 text-gray-600 shadow-md p-4 cursor-pointer hover:bg-gray-200 transition">
+      <span class="font-bold">Add Money</span>
+    </div>
+
+    <!-- Card 2 -->
+    <div onclick="showTab('send-money')" 
+         class="card bg-gray-100 text-gray-600 shadow-md p-4 cursor-pointer hover:bg-gray-200 transition">
+      <span class="font-bold">Send Money</span>
+    </div>
+
+    <!-- Card 3 -->
+    <div onclick="showTab('history')" 
+         class="card bg-gray-100 text-gray-600 shadow-md p-4 cursor-pointer hover:bg-gray-200 transition">
+      <span class="font-bold">Transaction History</span>
+    </div>
+  </div>
+
+  <!-- Forms / Tabs -->
+  <div class="mt-6">
+    <!-- Add Money -->
+    <div id="add-money" class="tab-content hidden">
+      <h2 class="text-xl font-bold mb-2">Add Money</h2>
+      <label class="form-control mb-2">
+        <span class="label-text">Select Bank</span>
+        <select class="select select-bordered">
+          <option>DBBL</option>
+          <option>BRAC</option>
+          <option>City Bank</option>
+        </select>
+      </label>
+      <label class="form-control mb-2">
+        <span class="label-text">Account Number</span>
+        <input type="text" class="input input-bordered" />
+      </label>
+      <label class="form-control mb-2">
+        <span class="label-text">Amount</span>
+        <input type="number" class="input input-bordered" />
+      </label>
+      <label class="form-control mb-2">
+        <span class="label-text">PIN</span>
+        <input type="password" class="input input-bordered" />
+      </label>
+      <button class="btn btn-primary w-full">Submit</button>
+    </div>
+
+    <!-- Send Money -->
+    <div id="send-money" class="tab-content hidden">
+      <h2 class="text-xl font-bold mb-2">Send Money</h2>
+      <label class="form-control mb-2">
+        <span class="label-text">Receiver Number</span>
+        <input type="text" class="input input-bordered" />
+      </label>
+      <label class="form-control mb-2">
+        <span class="label-text">Amount</span>
+        <input type="number" class="input input-bordered" />
+      </label>
+      <button class="btn btn-success w-full">Send</button>
+    </div>
+
+    <!-- History -->
+    <div id="history" class="tab-content hidden">
+      <h2 class="text-xl font-bold mb-2">Transaction History</h2>
+      <p class="text-gray-500">No history available yet...</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showTab(tabId) {
+    document.querySelectorAll(".tab-content").forEach(tab => tab.classList.add("hidden"));
+   // document.getElementById(tabId).classList.remove("hidden");
+    console.log(tabId);
+  }
+</script>
+
+</body>
+</html>

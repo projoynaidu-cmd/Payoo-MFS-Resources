@@ -4,12 +4,14 @@ const user = {
     password: '1234',
 };
 
+//console.log(mobile, password)
+
+
+// login btn
 const loginBtn = document.getElementById('login-btn')
     .addEventListener('click', (e) => {
-        //  console.log('Login button clicked!');
-        const mobile = document.getElementById('mobile-number').value;
-        const password = document.getElementById('pin-number').value;
-        //console.log(mobile, password)
+        const mobile = document.getElementById('mobile-number').value.trim();
+        const password = document.getElementById('pin-number').value.trim();
 
         if (mobile === user.mobile && password === user.password) {
             localStorage.setItem('user', JSON.stringify(user)) //this will store the data in the local storage
@@ -23,8 +25,8 @@ const loginBtn = document.getElementById('login-btn')
 // singup btn 
 const signupBtn = document.getElementById('signup-btn')
     .addEventListener('click', function () {
-       // window.location.href = 'signup.html'; // this will redirect to the signup page
-       alert('Signup button clicked!');
+        // window.location.href = 'signup.html'; // this will redirect to the signup page
+        alert('Signup button clicked!');
 
     })
 
@@ -37,9 +39,20 @@ document.getElementById('forgot-pin-btn')
         const forgotModal = document.getElementById('forgot_modal'); // this will get the forgot modal
         forgotModal.showModal(); // this will show the forgot modal
 
-        const resetBtn = document.getElementById('reset-btn'); // this will get the reset button
-        resetBtn.addEventListener('click', function () {
-            // explain how to get code/password from the user
+    })
+//reset btn inside model 
+document.getElementById('reset-btn')
+    .addEventListener('click', function () {
+        const mobileInput = document.getElementById('forgot-pin-input').value.trim(); // this will get the mobile input
+
+        if (!mobileInput) {
+            alert('Please enter your mobile number!');
+            return;
+        }
+        if (mobileInput === user.mobile) {
             alert('Your pin number is ' + user.password); // this will show an alert
-        })
+        } else {
+            alert('Invalid mobile number!'); // this will show an alert
+        }
+
     })

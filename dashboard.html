@@ -36,7 +36,7 @@
               <img src="./assets/Group.png" alt="Balance" class="w-10 h-10" />
             </figure>
             <div class="flex flex-col justify-center ml-4">
-              <span class="text-xl font-bold text-left">45000$</span>
+              <span id="balance" class="text-xl font-bold text-left">45000.00</span>
               <p class="text-sm text-gray-500 text-left">Available Balance</p>
             </div>
           </div>
@@ -140,7 +140,7 @@
             <label class="label">
               <span class="label-text">Select Bank</span>
             </label>
-            <select class="select select-bordered w-full">
+            <select id="bank-select" class="select select-bordered w-full">
               <option disabled selected>Choose Bank</option>
               <option>DBBL</option>
               <option>Islami Bank</option>
@@ -154,9 +154,9 @@
             <label class="label">
               <span class="label-text">Bank Account Number</span>
             </label>
-            <input
+            <input id="account-number"
               type="text"
-              placeholder="Enter account number"
+              placeholder="Enter 10 digit number"
               class="input input-bordered w-full"
             />
           </div>
@@ -164,11 +164,11 @@
           <!-- Amount -->
           <div class="form-control mb-4">
             <label class="label">
-              <span class="label-text">Amount to Send</span>
+              <span class="label-text capitalize">Amount to add</span>
             </label>
-            <input
+            <input id="addAmount"
               type="number"
-              placeholder="Enter amount"
+              placeholder="Add Amount to withdraw"
               class="input input-bordered w-full"
             />
           </div>
@@ -178,7 +178,7 @@
             <label class="label">
               <span class="label-text">PIN Number</span>
             </label>
-            <input
+            <input id="pin"
               type="password"
               placeholder="Enter PIN"
               class="input input-bordered w-full"
@@ -186,9 +186,10 @@
           </div>
 
           <!-- Submit Button -->
-          <button class="btn btn-primary w-full">Submit</button>
+          <button id="addMoney-btn" class="btn btn-primary w-full">Add Money</button>
         </div>
       </div>
     </div>
+    <script src="/js/dashboard.js"></script>
   </body>
 </html>
