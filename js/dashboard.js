@@ -50,6 +50,59 @@ document.getElementById('addMoney-btn')// this will get the add money button
 
     })
 
+
+// Withdraw function
+function withdrawMoney() {
+    const agentNumber = document.getElementById('Agent_Number').value.trim();
+    const withdrawAmount = Number(document.getElementById('withdrawAmount').value.trim());
+    const pin = document.getElementById('withdrawPin').value.trim();
+    const balanceEl = document.getElementById('balance');
+    const currentBalance = Number(balanceEl.innerText);
+
+    // 1️⃣ Check if fields are empty
+    if (!agentNumber || !withdrawAmount || !pin) {
+        alert("Please fill all the fields!");
+        return;
+    }
+
+    // 2️⃣ Agent number must be exactly 10 digits
+    if (agentNumber.length !== 10 || isNaN(agentNumber)) {
+        alert("Agent number must be 10 digits!");
+        return;
+    }
+
+    // 3️⃣ PIN must be exactly 4 digits
+    if (pin.length !== 4 || isNaN(pin)) {
+        alert("PIN must be 4 digits!");
+        return;
+    }
+
+    // 4️⃣ Check PIN correctness
+    if (Number(pin) !== validPin) {
+        alert("Invalid PIN!");
+        return;
+    }
+
+    // 5️⃣ Withdraw amount validation
+    if (withdrawAmount <= 10) {
+        alert("Please enter a valid amount greater than 10!");
+        return;
+    }
+    // 3. Balance check
+    if (withdrawAmount > currentBalance) {
+        alert("Balance কম আছে!");
+        return false;
+    }
+    // ✅ All validations passed, update balance
+    const newBalance = currentBalance - withdrawAmount;
+    balanceEl.innerText = newBalance;
+    alert("Money withdrawn successfully!");
+}
+
+// Attach the function to the button
+document.getElementById('withdraw-btn').addEventListener('click', withdrawMoney);
+
+
 // Function to show form based on the clicked card
 const showForm = (formToShow) => {
     // Hide all forms
@@ -82,6 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Show the default form (Add Money) when page loads
     const defaultForm = document.getElementById('add-money-form');
     showForm(defaultForm);  // Show the default form
-  const defaultTab = document.querySelector('.card[data-target="add-money-form"]');
+    const defaultTab = document.querySelector('.card[data-target="add-money-form"]');
     defaultTab.classList.add('bg-gray-200'); // Highlight the default tab
 })

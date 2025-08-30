@@ -185,7 +185,7 @@
             <input
               id="addAmount"
               type="number"
-              placeholder="Add Amount to withdraw"
+              placeholder="Enter Amount to Add"
               class="input input-bordered w-full"
             />
           </div>
@@ -233,7 +233,7 @@
               <span class="label-text capitalize">Amount </span>
             </label>
             <input
-              id="cashoutAmount"
+              id="withdrawAmount"
               type="number"
               placeholder="Add Amount to Cashout"
               class="input input-bordered w-full"
@@ -245,14 +245,14 @@
               <span class="label-text">PIN Number</span>
             </label>
             <input
-              id="pin"
+              id="withdrawPin"
               type="number"
               placeholder="Enter PIN"
               class="input input-bordered w-full"
             />
           </div>
           <!-- Submit Button -->
-          <button class="btn btn-primary w-full capitalize">withdraw Money</button>
+          <button id="withdraw-btn" class="btn btn-primary w-full capitalize">withdraw Money</button>
         </div>
         <!-- Transfer Money Form -->
         <div
@@ -266,7 +266,7 @@
               <span class="label-text">User Account Number</span>
             </label>
             <input
-              id="Agent_Number"
+              id="user-account-number"
               type="number"
               placeholder="Enter 10 digit number"
               class="input input-bordered w-full"
@@ -290,7 +290,7 @@
               <span class="label-text">PIN Number</span>
             </label>
             <input
-              id="pin"
+              id="teansferPin"
               type="number"
               placeholder="Enter PIN"
               class="input input-bordered w-full"
@@ -311,8 +311,8 @@
               <span class="label-text">Enter Bonus Coupon</span>
             </label>
             <input
-              id="pin"
-              type="password"
+              id="get-bonus-pin"
+              type="number"
               placeholder="Enter PIN"
               class="input input-bordered w-full"
             />
@@ -367,7 +367,7 @@
             <label class="label">
               <span class="label-text">Billing PIN</span>
             </label>
-            <input id="pin" type="password" placeholder="Enter PIN" class="input input-bordered w-full" />
+            <input id="billing-pin" type="number" placeholder="Enter PIN" class="input input-bordered w-full" />
           </div>
            <!-- Submit Button -->
           <button class="btn btn-primary w-full">Pay Now</button>
