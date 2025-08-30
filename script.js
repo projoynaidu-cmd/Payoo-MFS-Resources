@@ -16,7 +16,7 @@ const loginBtn = document.getElementById('login-btn')
         if (mobile === user.mobile && password === user.password) {
             localStorage.setItem('user', JSON.stringify(user)) //this will store the data in the local storage
             console.log(localStorage.getItem('user')); // this will print the data in the local storage
-            // window.location.href = 'dashboard.html'; // this will redirect to the dashboard page
+            window.location.href = 'dashboard.html'; // this will redirect to the dashboard page
         } else {
             alert('Invalid credentials!'); // this will show an alert
         }

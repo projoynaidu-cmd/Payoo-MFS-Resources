@@ -57,23 +57,31 @@ const showForm = (formToShow) => {
     forms.forEach(form => form.classList.add('hidden'));
 
     // Show the selected form
-    if (formToShow) { // Check if formToShow is not null
-        formToShow.classList.remove('hidden');
-    }
-    console.log(formToShow);
+    formToShow.classList.remove('hidden');
 }
 
 // Event listener setup for each card
 const cards = document.querySelectorAll('.card');  // Select all cards
 cards.forEach(card => {
     card.addEventListener('click', (e) => {
-        console.log(e.target.closest('.card'));
+
+        // Remove active class from all cards
+        cards.forEach(c => c.classList.remove('bg-gray-200', 'border-2', 'border-blue-500 '.trim()));
+        // Add active class to the clicked card
+        e.target.classList.add('border-2', 'border-blue-500');
+
         // Get the target form ID from the data-target attribute
         const targetForm = document.getElementById(e.target.closest('.card').dataset.target);
-
         // Show the corresponding form
         showForm(targetForm);
-        console.log('clicked')
     });
     // console.log(card);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Show the default form (Add Money) when page loads
+    const defaultForm = document.getElementById('add-money-form');
+    showForm(defaultForm);  // Show the default form
+  const defaultTab = document.querySelector('.card[data-target="add-money-form"]');
+    defaultTab.classList.add('bg-gray-200'); // Highlight the default tab
+})

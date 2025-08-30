@@ -14,22 +14,22 @@
     <div class="flex justify-center items-center min-h-screen">
         <!-- Main Container -->
         <div class="bg-white p-6 rounded shadow-lg w-96 h-full">
-            <!-- Cards Section -->
+            <!-- Cards Section (Tabs) -->
             <div class="grid grid-cols-3 gap-4 mb-6">
                 <!-- Add Money Card -->
-                <div class="card bg-gray-100 shadow-md p-4 flex flex-col items-center justify-center cursor-pointer" data-target="add-money-form">
+                <div class="card bg-gray-100 shadow-md p-4 flex flex-col items-center justify-center cursor-pointer tab" data-target="add-money-form">
                     <img src="/assets/wallet1.png" alt="Add Money" />
                     <span class="text-[10px] mt-2 text-gray-500">Add Money</span>
                 </div>
 
                 <!-- Cashout Card -->
-                <div class="card bg-gray-100 shadow-md p-4 flex flex-col items-center justify-center cursor-pointer" data-target="cashout-form">
+                <div class="card bg-gray-100 shadow-md p-4 flex flex-col items-center justify-center cursor-pointer tab" data-target="cashout-form">
                     <img src="/assets/send1.png" alt="Cashout" />
                     <span class="text-[10px] mt-2 text-gray-500">Cashout</span>
                 </div>
 
                 <!-- Transfer Money Card -->
-                <div class="card bg-gray-100 shadow-md p-4 flex flex-col items-center justify-center cursor-pointer" data-target="transfer-form">
+                <div class="card bg-gray-100 shadow-md p-4 flex flex-col items-center justify-center cursor-pointer tab" data-target="transfer-form">
                     <img src="/assets/money1.png" alt="Transfer Money" />
                     <span class="text-[10px] mt-2 text-gray-500">Transfer Money</span>
                 </div>
@@ -37,7 +37,7 @@
 
             <!-- Forms Section -->
             <!-- Add Money Form -->
-            <div id="add-money-form" class="form-container hidden  p-6 bg-gray-100 rounded-lg shadow-md mb-6">
+            <div id="add-money-form" class="form-container hidden p-6 bg-gray-100 rounded-lg shadow-md mb-6">
                 <h2 class="text-xl font-semibold mb-4">ADD MONEY</h2>
                 <div class="form-control mb-4">
                     <label class="label">Select Bank</label>
@@ -75,28 +75,42 @@
     </div>
 
     <script>
-      // Function to show form based on the clicked card
-const showForm = (formToShow) => {
-    // Hide all forms
-    const forms = document.querySelectorAll('.form-container');
-    forms.forEach(form => form.classList.add('hidden'));
-
-    // Show the selected form
-    formToShow.classList.remove('hidden');
-}
-
-// Event listener setup for each card
-const cards = document.querySelectorAll('.card');  // Select all cards
-cards.forEach(card => {
-    card.addEventListener('click', (e) => {
-        // Get the target form ID from the data-target attribute
-        const targetForm = document.getElementById(e.target.closest('.card').dataset.target);
+      // Function to show the clicked form and hide others
+      const showForm = (formToShow) => {
+        // Hide all forms first
+        const forms = document.querySelectorAll('.form-container');
+        forms.forEach(form => form.classList.add('hidden'));
         
-        // Show the corresponding form
-        showForm(targetForm);
-    });
-});
+        // Show the selected form
+        formToShow.classList.remove('hidden');
+      }
 
+      // Event listener setup for each card
+      const cards = document.querySelectorAll('.tab');  // Select all tabs (cards)
+      cards.forEach(card => {
+          card.addEventListener('click', (e) => {
+              // Remove active class from all cards
+              cards.forEach(c => c.classList.remove('bg-gray-200'));
+
+              // Add active class to the clicked card
+              e.target.closest('.card').classList.add('bg-gray-200');
+              
+              // Get the target form ID from the data-target attribute
+              const targetForm = document.getElementById(e.target.closest('.card').dataset.target);
+              
+              // Show the corresponding form
+              showForm(targetForm);
+          });
+      });
+
+      // Show the default form (Add Money) when page loads
+      document.addEventListener('DOMContentLoaded', () => {
+        const defaultForm = document.getElementById('add-money-form');
+        showForm(defaultForm);  // Show the default form
+        const defaultTab = document.querySelector('.tab[data-target="add-money-form"]');
+        defaultTab.classList.add('bg-gray-200'); // Highlight the default tab
+      });
     </script>
+
 </body>
 </html>
