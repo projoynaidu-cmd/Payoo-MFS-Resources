@@ -1,7 +1,7 @@
 
 const vaildPin = 1234; // this is the valid pin number
 
-
+// Event listener setup for the add money button in add money form
 document.getElementById('addMoney-btn')// this will get the add money button
     .addEventListener('click', (e) => { // this will add an event listener
 
@@ -15,12 +15,12 @@ document.getElementById('addMoney-btn')// this will get the add money button
         //console.log(bankName, accountNumber, addMoney, pinNumber, balanceEl);
 
         // validation
-        if (!bankName || !accountNumber || !pinNumber) {
+        if (!bankName || !accountNumber || !pinNumber) { // this will check if the bank name, account number and pin number are empty
             alert('Please fill all the fields!');
             return;
         }
         // account number length check (must be 10 digits)
-        if (accountNumber.length !== 10) {
+        if (accountNumber.length !== 10) { 
             alert('Account number must be 10 digits!');
             return;
         }
@@ -48,12 +48,12 @@ document.getElementById('addMoney-btn')// this will get the add money button
         const newBalance = currentBalance + addMoney; // this will add the amount to the current balance
         balanceEl.innerText = newBalance; // this will update the balance
         alert('Money added successfully!');
-addTransaction("Add Money", addMoney);
+        addTransaction("Add Money", addMoney);
 
     })
 
 
-// Withdraw function
+// Withdraw function setup in withdraw money form
 function withdrawMoney() {
     const agentNumber = document.getElementById('Agent_Number').value.trim();
     const withdrawAmount = Number(document.getElementById('withdrawAmount').value.trim());
@@ -239,43 +239,95 @@ document.getElementById('pay-bill-btn').addEventListener('click', payBill);
 
 
 
-//transation history function
-// 📝 Transaction add করার ফাংশন
+// 📝 Transaction add funcation learning code 
+/**
+ function addTransaction(type, amount) {
+     const historyTable = document.getElementById("transaction-history");
+     const row = document.createElement("tr");
+     // আজকের তারিখ নাও
+     const date = new Date().toLocaleString();
+
+     row.innerHTML = `
+         <td>${type}</td>
+         <td>${amount}</td>
+         <td>${date}</td>
+     `;
+         historyTable.prepend(row); // নতুনটা উপরে দেখানোর জন্য prepend ব্যবহার করা হলো
+
+     const latestDiv = document.getElementById("latest-transaction-list");
+     const latestItem = document.createElement("div");
+     latestItem.innerHTML =`
+         <div class="latest-transaction border-b py-2">
+            <p><strong>${type}</strong></p>
+             <p>Amount: ${amount}</p>
+             <p class="text-sm text-gray-500">${date}</p>
+         </div>
+     `;
+ latestDiv.prepend(latestItem);
+
+ const latestItems = latestDiv.querySelectorAll(".latest-transaction");
+ if (latestItems.length > 5) {
+     latestItems[latestItems.length - 1].remove();
+
+
+ }
+
+}
+
+ */
+
+
+// 📝 transation history function ai code 
 function addTransaction(type, amount) {
-    const historyTable = document.getElementById("transaction-history");
-    const row = document.createElement("tr");
-
-    // আজকের তারিখ নাও
     const date = new Date().toLocaleString();
+    const transaction = { type, amount, date }; // transaction object
 
-    row.innerHTML = `
-        <td>${type}</td>
-        <td>${amount}</td>
-        <td>${date}</td>
-    `;
-        historyTable.prepend(row); // নতুনটা উপরে দেখানোর জন্য prepend ব্যবহার করা হলো
+    // localStorage থেকে transactions নাও
+    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
 
+    // নতুন transaction add করো
+    transactions.push(transaction); // history এর জন্য push, newest at last
+
+    // Save to localStorage
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+
+    // DOM update
+    const historyTable = document.getElementById("transaction-history");
     const latestDiv = document.getElementById("latest-transaction-list");
-    const latestItem = document.createElement("div");
-    latestItem.innerHTML =`
-        <div class="latest-transaction border-b py-2">
-           <p><strong>${type}</strong></p>
-            <p>Amount: ${amount}</p>
-            <p class="text-sm text-gray-500">${date}</p>
-        </div>
-    `;
-latestDiv.prepend(latestItem);
 
-const latestItems = latestDiv.querySelectorAll(".latest-transaction");
-if (latestItems.length > 5) {
-    latestItems[latestItems.length - 1].remove();
+    // Clear current content
+    historyTable.innerHTML = "";
+    latestDiv.innerHTML = "";
+
+    // ১️⃣ Transaction History → সব দেখাবে
+    transactions.forEach(tx => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${tx.type}</td>
+            <td>${tx.amount}</td>
+            <td>${tx.date}</td>
+        `;
+        historyTable.appendChild(row);
+    });
+
+    // ২️⃣ Latest Transactions → শুধু 5টা দেখাবে (নতুনগুলো উপরে)
+    transactions.slice(-5).reverse().forEach(tx => {
+        const latestItem = document.createElement("div");
+        latestItem.classList.add("latest-transaction", "border-b", "py-2");
+        latestItem.innerHTML = `
+            <p><strong>${tx.type}</strong></p>
+            <p>Amount: ${tx.amount}</p>
+            <p class="text-sm text-gray-500">${tx.date}</p>
+        `;
+        latestDiv.appendChild(latestItem);
+    });
 }
 
-
-}
-
-
-
+// Page load এ old transactions দেখানোর জন্য
+document.addEventListener("DOMContentLoaded", () => {
+    const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+    transactions.forEach(tx => addTransaction(tx.type, tx.amount));
+});
 
 
 
@@ -309,8 +361,8 @@ cards.forEach(card => {
         const targetForm = document.getElementById(e.target.closest('.card').dataset.target);
         // Show the corresponding form
         showForm(targetForm);
-       const latestEl = document.getElementById('latest-transaction-form');
-       latestEl.classList.add('hidden');
+        const latestEl = document.getElementById('latest-transaction-form');
+        latestEl.classList.add('hidden');
     });
     // console.log(card);
 });

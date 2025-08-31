@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payooo Dashboard</title>
+    <!-- DaisyUI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #f0f4ff 0%, #e6e9ff 100%);
+      }
+      
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+      
+      .active-card {
+        background-color: #e0e7ff !important;
+        border: 2px solid #4f46e5 !important;
+      }
+      
+      .transaction-item {
+        transition: background-color 0.2s;
+      }
+      
+      .transaction-item:hover {
+        background-color: #f8fafc;
+      }
+      
+      .btn-transition {
+        transition: all 0.2s ease;
+      }
+      
+      .btn-transition:active {
+        transform: scale(0.98);
+      }
+      
+      .balance-glow {
+        animation: balanceGlow 2s ease-in-out;
+      }
+      
+      @keyframes balanceGlow {
+        0%, 100% { box-shadow: 0 0 5px rgba(79, 70, 229, 0.3); }
+        50% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.6); }
+      }
+    </style>
+  </head>
+
+  <body class="min-h-screen py-6 px-4">
+    <div class="max-w-md mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+      <!-- Header Section -->
+      <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-5">
+        <div class="flex justify-between items-center mb-4">
+          <h1 class="text-xl font-bold">Payooo Dashboard</h1>
+          <button id="logout-btn" class="btn btn-sm btn-error btn-outline">
+            <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
+          </button>
+        </div>
+        
+        <!-- Balance Card -->
+        <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 flex items-center justify-between">
+          <div>
+            <p class="text-sm opacity-90">Available Balance</p>
+            <p id="balance" class="text-2xl font-bold">45000.00 ৳</p>
+          </div>
+          <div class="bg-white/30 p-3 rounded-full">
+            <img src="https://placehold.co/40x40/3B82F6/FFFFFF?text=P" alt="Balance" class="w-6 h-6">
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="p-5">
+        <!-- Welcome Section -->
+        <div class="mb-6">
+          <h2 class="text-xl font-semibold text-gray-800 mb-2 flex items-center">
+            <span class="text-indigo-600 mr-2">🔥</span> Welcome to Payooo!
+          </h2>
+          <p class="text-gray-600 text-sm">
+            Enjoy easy and convenient financial services with us. Cashout charge is low and convenient.
+          </p>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid grid-cols-3 gap-3 mb-6">
+          <!-- Add Money -->
+          <div class="card-hover bg-gray-50 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer active-card" data-target="add-money-form">
+            <div class="bg-indigo-100 p-2 rounded-full mb-2">
+              <img src="https://placehold.co/40x40/6366F1/FFFFFF?text=+" alt="Add Money" class="w-6 h-6">
+            </div>
+            <span class="text-xs font-medium text-gray-600 text-center">Add Money</span>
+          </div>
+
+          <!-- Cashout -->
+          <div class="card-hover bg-gray-50 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer" data-target="cashout-form">
+            <div class="bg-indigo-100 p-2 rounded-full mb-2">
+              <img src="https://placehold.co/40x40/6366F1/FFFFFF?text=→" alt="Cashout" class="w-6 h-6">
+            </div>
+            <span class="text-xs font-medium text-gray-600 text-center">Cashout</span>
+          </div>
+
+          <!-- Transfer Money -->
+          <div class="card-hover bg-gray-50 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer" data-target="transfer-form">
+            <div class="bg-indigo-100 p-2 rounded-full mb-2">
+              <img src="https://placehold.co/40x40/6366F1/FFFFFF?text=⇄" alt="Transfer Money" class="w-6 h-6">
+            </div>
+            <span class="text-xs font-medium text-gray-600 text-center">Transfer Money</span>
+          </div>
+
+          <!-- Get Bonus -->
+          <div class="card-hover bg-gray-50 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer" data-target="get-bonus-form">
+            <div class="bg-indigo-100 p-2 rounded-full mb-2">
+              <img src="https://placehold.co/40x40/6366F1/FFFFFF?text=★" alt="Get Bonus" class="w-6 h-6">
+            </div>
+            <span class="text-xs font-medium text-gray-600 text-center">Get Bonus</span>
+          </div>
+
+          <!-- Pay Bill -->
+          <div class="card-hover bg-gray-50 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer" data-target="pay-bill-form">
+            <div class="bg-indigo-100 p-2 rounded-full mb-2">
+              <img src="https://placehold.co/40x40/6366F1/FFFFFF?text=$" alt="Pay Bill" class="w-6 h-6">
+            </div>
+            <span class="text-xs font-medium text-gray-600 text-center">Pay Bill</span>
+          </div>
+
+          <!-- Transaction History -->
+          <div class="card-hover bg-gray-50 rounded-xl p-3 flex flex-col items-center justify-center cursor-pointer" data-target="transaction-history-form">
+            <div class="bg-indigo-100 p-2 rounded-full mb-2">
+              <img src="https://placehold.co/40x40/6366F1/FFFFFF?text=≡" alt="Transaction History" class="w-6 h-6">
+            </div>
+            <span class="text-xs font-medium text-gray-600 text-center">Transaction History</span>
+          </div>
+        </div>
+
+        <!-- Latest Transactions -->
+        <div id="latest-transaction-form" class="mb-6">
+          <h2 class="text-lg font-semibold text-gray-800 mb-3 flex items-center">
+            <i class="fas fa-history text-indigo-600 mr-2"></i> Latest Transactions
+          </h2>
+          <div id="latest-transaction-list" class="bg-gray-50 rounded-lg p-3 space-y-2 max-h-60 overflow-y-auto">
+            <!-- Transactions will be added here dynamically -->
+            <div class="text-center text-gray-500 py-4">
+              <i class="fas fa-receipt text-2xl mb-2"></i>
+              <p>No transactions yet</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Forms Section -->
+        <div class="space-y-5">
+          <!-- Add Money Form -->
+          <div id="add-money-form" class="bg-gray-50 rounded-xl p-5 hidden">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+              <i class="fas fa-wallet text-indigo-600 mr-2"></i> ADD MONEY
+            </h2>
+
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Select Bank</label>
+                <select id="bank-select" class="select select-bordered w-full bg-white">
+                  <option disabled selected>Choose Bank</option>
+                  <option>DBBL</option>
+                  <option>Islami Bank</option>
+                  <option>City Bank</option>
+                  <option>Brac Bank</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Bank Account Number</label>
+                <input
+                  id="account-number"
+                  type="number"
+                  placeholder="Enter 10 digit number"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Amount to add</label>
+                <input
+                  id="addAmount"
+                  type="number"
+                  placeholder="Enter Amount to Add"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">PIN Number</label>
+                <input
+                  id="pin"
+                  type="number"
+                  placeholder="Enter PIN"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+
+              <button id="addMoney-btn" class="btn btn-primary w-full mt-2 btn-transition">
+                <i class="fas fa-plus-circle mr-2"></i> Add Money
+              </button>
+            </div>
+          </div>
+
+          <!-- Other forms (Cashout, Transfer, etc.) would go here with similar structure -->
+          <!-- Cashout Form -->
+          <div id="cashout-form" class="bg-gray-50 rounded-xl p-5 hidden">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+              <i class="fas fa-money-bill-wave text-indigo-600 mr-2"></i> CASHOUT
+            </h2>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Agent Number</label>
+                <input
+                  id="Agent_Number"
+                  type="number"
+                  placeholder="Enter 10 digit number"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                <input
+                  id="withdrawAmount"
+                  type="number"
+                  placeholder="Add Amount to Cashout"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">PIN Number</label>
+                <input
+                  id="withdrawPin"
+                  type="number"
+                  placeholder="Enter PIN"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+              
+              <button id="withdraw-btn" class="btn btn-primary w-full mt-2 btn-transition">
+                <i class="fas fa-hand-holding-usd mr-2"></i> Withdraw Money
+              </button>
+            </div>
+          </div>
+
+          <!-- Transfer Money Form -->
+          <div id="transfer-form" class="bg-gray-50 rounded-xl p-5 hidden">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+              <i class="fas fa-exchange-alt text-indigo-600 mr-2"></i> TRANSFER MONEY
+            </h2>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">User Account Number</label>
+                <input
+                  id="user-account-number"
+                  type="number"
+                  placeholder="Enter 10 digit number"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Amount to Transfer</label>
+                <input
+                  id="transferAmount"
+                  type="number"
+                  placeholder="Add Amount to Transfer"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">PIN Number</label>
+                <input
+                  id="teansferPin"
+                  type="number"
+                  placeholder="Enter PIN"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+              
+              <button id="transfer-btn" class="btn btn-primary w-full mt-2 btn-transition">
+                <i class="fas fa-paper-plane mr-2"></i> Send Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Get Bonus Form -->
+          <div id="get-bonus-form" class="bg-gray-50 rounded-xl p-5 hidden">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+              <i class="fas fa-gift text-indigo-600 mr-2"></i> GET BONUS
+            </h2>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Enter Bonus Coupon</label>
+                <input
+                  id="get-bonus-coupon"
+                  type="text"
+                  placeholder="Enter Coupon"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+              
+              <button id="get-bonus-btn" class="btn btn-primary w-full mt-2 btn-transition">
+                <i class="fas fa-ticket-alt mr-2"></i> Get Bonus
+              </button>
+            </div>
+          </div>
+
+          <!-- Pay Bill Form -->
+          <div id="pay-bill-form" class="bg-gray-50 rounded-xl p-5 hidden">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+              <i class="fas fa-file-invoice-dollar text-indigo-600 mr-2"></i> PAY BILL
+            </h2>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Select to Pay</label>
+                <select id="pay-bill-name" class="select select-bordered w-full bg-white">
+                  <option disabled selected>Select Bill Type</option>
+                  <option>Mobile Bill</option>
+                  <option>Mobile Recharge</option>
+                  <option>Water Bill</option>
+                  <option>Electricity Bill</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Billing Account Number</label>
+                <input
+                  id="billing-account-number"
+                  type="number"
+                  placeholder="Enter account number"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Billing Amount</label>
+                <input
+                  id="billing-amount"
+                  type="number"
+                  placeholder="Amount to Pay"
+                  class="input input-bordered w-full bg-white"
+                />
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Billing PIN</label>
+                <input 
+                  id="billing-pin" 
+                  type="number" 
+                  placeholder="Enter PIN" 
+                  class="input input-bordered w-full bg-white" 
+                />
+              </div>
+              
+              <button id="pay-bill-btn" class="btn btn-primary w-full mt-2 btn-transition">
+                <i class="fas fa-check-circle mr-2"></i> Pay Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Transaction History Form -->
+          <div id="transaction-history-form" class="bg-gray-50 rounded-xl p-5 hidden">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+              <i class="fas fa-receipt text-indigo-600 mr-2"></i> TRANSACTION HISTORY
+            </h2>
+            
+            <div class="overflow-x-auto">
+              <table class="table w-full">
+                <thead>
+                  <tr>
+                    <th class="bg-indigo-100">Transaction</th>
+                    <th class="bg-indigo-100">Amount</th>
+                    <th class="bg-indigo-100">Date</th>
+                  </tr>
+                </thead>
+                <tbody id="transaction-history">
+                  <!-- Transactions will be added here dynamically -->
+                  <tr>
+                    <td colspan="3" class="text-center py-4 text-gray-500">
+                      No transactions yet
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Your JavaScript code with all functionality preserved
+      const vaildPin = 1234; // this is the valid pin number
+
+      document.getElementById('addMoney-btn')// this will get the add money button
+          .addEventListener('click', (e) => { // this will add an event listener
+
+              const bankName = document.getElementById('bank-select').value.trim(); // this will get the bank name
+              const accountNumber = document.getElementById('account-number').value; // this will get the account number
+              const addMoney = Number(document.getElementById('addAmount').value); // this will get the amount to add
+              const pinNumber = document.getElementById('pin').value.trim(); // this will get the pin number
+              const balanceEl = document.getElementById('balance'); // this will get the balance
+
+              //console.log(bankName, accountNumber, addMoney, pinNumber, balanceEl);
+
+              // validation
+              if (!bankName || !accountNumber || !pinNumber) {
+                  alert('Please fill all the fields!');
+                  return;
+              }
+              // account number length check (must be 10 digits)
+              if (accountNumber.length !== 10) {
+                  alert('Account number must be 10 digits!');
+                  return;
+              }
+
+              // pin number length check (must be 4 digits)
+              if (pinNumber.length !== 4) {
+                  alert('PIN must be 4 digits!');
+                  return;
+              }
+
+              // pin number check
+              if (Number(pinNumber) !== vaildPin) {
+                  alert('Invalid PIN!');
+                  return;
+              }
+
+              // validation
+              if (addMoney <= 0) {
+                  alert('Please enter a valid amount!');
+                  return;
+              }
+
+              // update balance 
+              const currentBalance = Number(balanceEl.innerText); // this will get the current balance
+              const newBalance = currentBalance + addMoney; // this will add the amount to the current balance
+              balanceEl.innerText = newBalance; // this will update the balance
+              
+              // Add animation to balance update
+              balanceEl.classList.add('balance-glow');
+              setTimeout(() => balanceEl.classList.remove('balance-glow'), 2000);
+              
+              alert('Money added successfully!');
+              addTransaction("Add Money", addMoney);
+
+          });
+
+      // Withdraw function
+      function withdrawMoney() {
+          const agentNumber = document.getElementById('Agent_Number').value.trim();
+          const withdrawAmount = Number(document.getElementById('withdrawAmount').value.trim());
+          const pin = document.getElementById('withdrawPin').value.trim();
+          const balanceEl = document.getElementById('balance');
+          const currentBalance = Number(balanceEl.innerText);
+
+          const validPin = 1234; // Example valid PIN
+
+          // 1️⃣ Check if fields are empty
+          if (!agentNumber || !withdrawAmount || !pin) {
+              alert("Please fill all the fields!");
+              return;
+          }
+
+          // 2️⃣ Agent number must be exactly 10 digits
+          if (agentNumber.length !== 10 || isNaN(agentNumber)) {
+              alert("Agent number must be 10 digits!");
+              return;
+          }
+
+          // 3️⃣ PIN must be exactly 4 digits
+          if (pin.length !== 4 || isNaN(pin)) {
+              alert("PIN must be 4 digits!");
+              return;
+          }
+
+          // 4️⃣ Check PIN correctness
+          if (Number(pin) !== validPin) {
+              alert("Invalid PIN!");
+              return;
+          }
+
+          // 5️⃣ Withdraw amount validation
+          if (withdrawAmount <= 10) {
+              alert("Please enter a valid amount greater than 10!");
+              return;
+          }
+          // 3. Balance check
+          if (withdrawAmount > currentBalance) {
+              alert("Insufficient balance!");
+              return false;
+          }
+          // ✅ All validations passed, update balance
+          const newBalance = currentBalance - withdrawAmount;
+          balanceEl.innerText = newBalance;
+          
+          // Add animation to balance update
+          balanceEl.classList.add('balance-glow');
+          setTimeout(() => balanceEl.classList.remove('balance-glow'), 2000);
+          
+          alert("Money withdrawn successfully!");
+          addTransaction("Withdraw", withdrawAmount);
+      }
+
+      // Attach the function to the button
+      document.getElementById('withdraw-btn').addEventListener('click', withdrawMoney);
+
+      // Transfer function
+      function transferMoney() {
+          const agentNumber = document.getElementById('user-account-number').value.trim();
+          const transferAmount = Number(document.getElementById('transferAmount').value.trim());
+          const pin = document.getElementById('teansferPin').value.trim();
+          const balanceEl = document.getElementById('balance');
+          const currentBalance = Number(balanceEl.innerText);
+          const vaildPin = 1234;
+
+          // 1️⃣ Check if fields are empty
+          if (!agentNumber || !transferAmount || !pin) {
+              alert("Please fill all the fields!");
+              return;
+          }
+
+          // 2️⃣ Agent number must be exactly 10 digits
+          if (agentNumber.length !== 10 || isNaN(agentNumber)) {
+              alert("Agent number must be 10 digits!");
+              return;
+          }
+
+          // 3️⃣ PIN must be exactly 4 digits
+          if (pin.length !== 4 || isNaN(pin)) {
+              alert("PIN must be 4 digits!");
+              return;
+          }
+
+          // 4️⃣ Check PIN correctness
+          if (Number(pin) !== vaildPin) {
+              alert("Invalid PIN!");
+              return;
+          }
+
+          // 5️⃣ Withdraw amount validation
+          if (transferAmount <= 10) {
+              alert("Please enter a valid amount greater than 10!");
+              return;
+          }
+          // 3. Balance check
+          if (transferAmount > currentBalance) {
+              alert("Insufficient balance!");
+              return false;
+          }
+          // ✅ All validations passed, update balance
+          const newBalance = currentBalance - transferAmount;
+          balanceEl.innerText = newBalance;
+          
+          // Add animation to balance update
+          balanceEl.classList.add('balance-glow');
+          setTimeout(() => balanceEl.classList.remove('balance-glow'), 2000);
+          
+          alert("Money transferred successfully!");
+          addTransaction("Transfer", transferAmount);
+      }
+
+      // Attach the function to the button
+      document.getElementById('transfer-btn').addEventListener('click', transferMoney);
+
+      // get bonus function
+      function getBonus() {
+          const getBonusCoupon = document.getElementById('get-bonus-coupon').value.trim();
+          const balanceEl = document.getElementById('balance');
+          let currentBalance = Number(balanceEl.innerText);
+
+          // Predefined coupons
+          const coupons = {
+              "BONUS100": 100,
+              "SAVE50": 50,
+              "EXTRA200": 200
+          };
+
+          // 1️⃣ Check if fields are empty
+          if (!getBonusCoupon) {
+              alert("Please enter a coupon code!");
+              return;
+          }
+
+          // 2️⃣ Check if coupon is valid
+          if (coupons[getBonusCoupon]) {
+              currentBalance += coupons[getBonusCoupon];
+              balanceEl.innerText = currentBalance;
+              
+              // Add animation to balance update
+              balanceEl.classList.add('balance-glow');
+              setTimeout(() => balanceEl.classList.remove('balance-glow'), 2000);
+              
+              alert(`🎉 Coupon applied! You got ${coupons[getBonusCoupon]} bonus.`);
+          } else {
+              alert("❌ Invalid coupon! Please try again.");
+          }
+          addTransaction("Bonus", coupons[getBonusCoupon] || 0);
+      }
+
+      // Attach the function to the button
+      document.getElementById('get-bonus-btn').addEventListener('click', getBonus);
+
+      function payBill() {
+          const billName = document.getElementById('pay-bill-name').value.trim();
+          const billNumber = document.getElementById('billing-account-number').value.trim();
+          const billAmount = Number(document.getElementById('billing-amount').value.trim());
+          const pin = Number(document.getElementById('billing-pin').value.trim());
+          const balanceEl = document.getElementById('balance');
+          const currentBalance = Number(balanceEl.innerText);
+
+          console.log(billName, billNumber, billAmount, pin);
+          const validPin = 1234; // Example valid PIN
+
+          if (billName && billNumber && billAmount && pin) {
+              if (Number(pin) === validPin) {
+                  const newBalance = currentBalance - billAmount;
+                  balanceEl.innerText = newBalance;
+                  
+                  // Add animation to balance update
+                  balanceEl.classList.add('balance-glow');
+                  setTimeout(() => balanceEl.classList.remove('balance-glow'), 2000);
+                  
+                  alert('Bill paid successfully!');
+              } else {
+                  alert('Invalid PIN!');
+              }
+          } else {
+              alert('Please fill all the fields!');
+          }
+
+          addTransaction("Bill", billAmount);
+      }
+
+      document.getElementById('pay-bill-btn').addEventListener('click', payBill);
+
+      //transation history function
+      // 📝 Transaction add করার ফাংশন
+      function addTransaction(type, amount) {
+          const historyTable = document.getElementById("transaction-history");
+          const latestDiv = document.getElementById("latest-transaction-list");
+          
+          // Clear "no transactions" message if it exists
+          if (historyTable.innerHTML.includes('No transactions')) {
+              historyTable.innerHTML = '';
+          }
+          if (latestDiv.innerHTML.includes('No transactions')) {
+              latestDiv.innerHTML = '';
+          }
+
+          const row = document.createElement("tr");
+          row.className = "transaction-item";
+
+          // আজকের তারিখ নাও
+          const date = new Date().toLocaleString();
+
+          row.innerHTML = `
+              <td class="font-medium">${type}</td>
+              <td class="font-medium ${type === 'Withdraw' || type === 'Transfer' || type === 'Bill' ? 'text-red-600' : 'text-green-600'}">${amount} ৳</td>
+              <td class="text-sm text-gray-500">${date}</td>
+          `;
+          historyTable.prepend(row); // নতুনটা উপরে দেখানোর জন্য prepend ব্যবহার করা হলো
+
+          const latestItem = document.createElement("div");
+          latestItem.className = "transaction-item bg-white p-3 rounded-lg border";
+          latestItem.innerHTML =`
+              <div class="flex justify-between items-center">
+                  <div>
+                      <p class="font-medium">${type}</p>
+                      <p class="text-sm text-gray-500">${date}</p>
+                  </div>
+                  <p class="font-bold ${type === 'Withdraw' || type === 'Transfer' || type === 'Bill' ? 'text-red-600' : 'text-green-600'}">${amount} ৳</p>
+              </div>
+          `;
+          latestDiv.prepend(latestItem);
+
+          const latestItems = latestDiv.querySelectorAll(".transaction-item");
+          if (latestItems.length > 5) {
+              latestItems[latestItems.length - 1].remove();
+          }
+      }
+
+      // Function to show form based on the clicked card
+      const showForm = (formToShow) => {
+          // Hide all forms
+          const forms = document.querySelectorAll('.bg-gray-50.rounded-xl');
+          forms.forEach(form => form.classList.add('hidden'));
+
+          // Show the selected form
+          if (formToShow) formToShow.classList.remove('hidden');
+          
+          // Hide latest transactions when a form is shown
+          document.getElementById('latest-transaction-form').classList.add('hidden');
+      }
+
+      // Event listener setup for each card
+      const cards = document.querySelectorAll('[data-target]');  // Select all cards with data-target
+      cards.forEach(card => {
+          card.addEventListener('click', (e) => {
+              // Remove active class from all cards
+              cards.forEach(c => c.classList.remove('active-card'));
+              // Add active class to the clicked card
+              card.classList.add('active-card');
+
+              // Get the target form ID from the data-target attribute
+              const targetForm = document.getElementById(card.dataset.target);
+              // Show the corresponding form
+              showForm(targetForm);
+          });
+      });
+
+      // Logout button functionality
+      document.getElementById('logout-btn').addEventListener('click', function() {
+          if (confirm('Are you sure you want to logout?')) {
+              localStorage.removeItem('user');
+              window.location.href = 'index.html';
+          }
+      });
+    </script>
+  </body>
+</html>
