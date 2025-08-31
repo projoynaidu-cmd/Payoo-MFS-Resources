@@ -132,11 +132,12 @@
           </div>
         </div>
         <!-- Forms -->
+
          <!-- Latest Transactions -->
           <div class="mt-10">
         <div
           id="latest-transaction-form"
-          class="from-container hidden mt-6 p-6 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto" 
+          class="form-container mt-6 p-6 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto" 
         >
           <h2 class="text-xl font-semibold mb-4">Latest Transactions</h2>
           <div id="latest-transaction-list">
@@ -332,32 +333,33 @@
             <label class="label">
               <span class="label-text capitalize">Select to Pay</span>
             </label>
-            <select id="bank-select" class="select select-bordered w-full">
-              <option disabled selected>Choose Bank</option>
-              <option>DBBL</option>
-              <option>Islami Bank</option>
-              <option>City Bank</option>
-              <option>Brac Bank</option>
+            <select id="pay-bill-name" class="select select-bordered w-full">
+              <option disabled selected>Select Bank</option>
+              <option>Mobile Bill</option>
+              <option>Mobile Recharge</option>
+              <option> Water Bill</option>
+              <option>Electricity Bill</option>
             </select>
           </div>
+          <!-- Account Number -->
           <div class="form-control mb-6">
             <label class="label">
               <span class="label-text">Billing Account Number</span>
             </label>
             <input
-              id=""
+              id="billing-account-number"
               type="number"
-              placeholder="Enter PIN"
+              placeholder="Enter 10 digit number"
               class="input input-bordered w-full"
             />
           </div>
-
+          <!-- Amount -->
           <div class="form-control mb-6">
             <label class="label">
               <span class="label-text">Billing Amount</span>
             </label>
             <input
-              id=""
+              id="billing-amount"
               type="number"
               placeholder=" Amount to Pay"
               class="input input-bordered w-full"
@@ -370,7 +372,7 @@
             <input id="billing-pin" type="number" placeholder="Enter PIN" class="input input-bordered w-full" />
           </div>
            <!-- Submit Button -->
-          <button class="btn btn-primary w-full">Pay Now</button>
+          <button id="pay-bill-btn" class="btn btn-primary w-full">Pay Now</button>
           </div>
           <!-- Transaction History Form -->
            <div

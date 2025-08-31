@@ -48,6 +48,7 @@ document.getElementById('addMoney-btn')// this will get the add money button
         const newBalance = currentBalance + addMoney; // this will add the amount to the current balance
         balanceEl.innerText = newBalance; // this will update the balance
         alert('Money added successfully!');
+addTransaction("Add Money", addMoney);
 
     })
 
@@ -101,6 +102,7 @@ function withdrawMoney() {
     const newBalance = currentBalance - withdrawAmount;
     balanceEl.innerText = newBalance;
     alert("Money withdrawn successfully!");
+    addTransaction("Withdraw", withdrawAmount);
 }
 
 // Attach the function to the button
@@ -154,6 +156,7 @@ function transferMoney() {
     const newBalance = currentBalance - transferAmount;
     balanceEl.innerText = newBalance;
     alert("Money transferred successfully!");
+    addTransaction("Transfer", transferAmount);
 }
 
 // Attach the function to the button
@@ -189,6 +192,7 @@ function getBonus() {
     } else {
         alert("❌ Invalid coupon! Please try again.");
     }
+    addTransaction("Bonus", coupons[getBonusCoupon]);
 }
 
 
@@ -201,12 +205,74 @@ document.getElementById('get-bonus-btn').addEventListener('click', getBonus);
 
 
 
+function payBill() {
+    const billName = document.getElementById('pay-bill-name').value.trim();
+    const billNumber = document.getElementById('billing-account-number').value.trim();
+    const billAmount = Number(document.getElementById('billing-amount').value.trim());
+    const pin = Number(document.getElementById('billing-pin').value.trim());
+    const balanceEl = document.getElementById('balance');
+    const currentBalance = Number(balanceEl.innerText);
+
+    console.log(billName, billNumber, billAmount, pin);
+    const validPin = 1234; // Example valid PIN
+
+
+    if (billName && billNumber && billAmount && pin) {
+        if (Number(pin) === validPin) {
+            const newBalance = currentBalance - billAmount;
+            balanceEl.innerText = newBalance;
+            alert('Bill paid successfully!');
+        } else {
+            alert('Invalid PIN!');
+        }
+    } else {
+        alert('Please fill all the fields!');
+    }
+
+    addTransaction("Bill", billAmount);
+
+}
+
+document.getElementById('pay-bill-btn').addEventListener('click', payBill);
 
 
 
 
 
+//transation history function
+// 📝 Transaction add করার ফাংশন
+function addTransaction(type, amount) {
+    const historyTable = document.getElementById("transaction-history");
+    const row = document.createElement("tr");
 
+    // আজকের তারিখ নাও
+    const date = new Date().toLocaleString();
+
+    row.innerHTML = `
+        <td>${type}</td>
+        <td>${amount}</td>
+        <td>${date}</td>
+    `;
+        historyTable.prepend(row); // নতুনটা উপরে দেখানোর জন্য prepend ব্যবহার করা হলো
+
+    const latestDiv = document.getElementById("latest-transaction-list");
+    const latestItem = document.createElement("div");
+    latestItem.innerHTML =`
+        <div class="latest-transaction border-b py-2">
+           <p><strong>${type}</strong></p>
+            <p>Amount: ${amount}</p>
+            <p class="text-sm text-gray-500">${date}</p>
+        </div>
+    `;
+latestDiv.prepend(latestItem);
+
+const latestItems = latestDiv.querySelectorAll(".latest-transaction");
+if (latestItems.length > 5) {
+    latestItems[latestItems.length - 1].remove();
+}
+
+
+}
 
 
 
@@ -243,14 +309,9 @@ cards.forEach(card => {
         const targetForm = document.getElementById(e.target.closest('.card').dataset.target);
         // Show the corresponding form
         showForm(targetForm);
+       const latestEl = document.getElementById('latest-transaction-form');
+       latestEl.classList.add('hidden');
     });
     // console.log(card);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Show the default form (Add Money) when page loads
-    const defaultForm = document.getElementById('add-money-form');
-    showForm(defaultForm);  // Show the default form
-    const defaultTab = document.querySelector('.card[data-target="add-money-form"]');
-    defaultTab.classList.add('bg-gray-200'); // Highlight the default tab
-})
