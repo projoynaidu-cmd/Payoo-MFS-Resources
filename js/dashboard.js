@@ -5,6 +5,7 @@ const vaildPin = 1234; // this is the valid pin number
 document.getElementById('addMoney-btn')// this will get the add money button
     .addEventListener('click', (e) => { // this will add an event listener
 
+
         const bankName = document.getElementById('bank-select').value.trim(); // this will get the bank name
         const accountNumber = document.getElementById('account-number').value; // this will get the account number
         const addMoney = Number(document.getElementById('addAmount').value); // this will get the amount to add
@@ -59,6 +60,9 @@ function withdrawMoney() {
     const balanceEl = document.getElementById('balance');
     const currentBalance = Number(balanceEl.innerText);
 
+    const validPin = 1234; // Example valid PIN
+
+
     // 1️⃣ Check if fields are empty
     if (!agentNumber || !withdrawAmount || !pin) {
         alert("Please fill all the fields!");
@@ -101,6 +105,118 @@ function withdrawMoney() {
 
 // Attach the function to the button
 document.getElementById('withdraw-btn').addEventListener('click', withdrawMoney);
+
+// Transfer function
+function transferMoney() {
+    const agentNumber = document.getElementById('user-account-number').value.trim();
+    const transferAmount = Number(document.getElementById('transferAmount').value.trim());
+    const pin = document.getElementById('teansferPin').value.trim();
+    const balanceEl = document.getElementById('balance');
+    const currentBalance = Number(balanceEl.innerText);
+    const vaildPin = 1234;
+
+
+    // 1️⃣ Check if fields are empty
+    if (!agentNumber || !transferAmount || !pin) {
+        alert("Please fill all the fields!");
+        return;
+    }
+
+    // 2️⃣ Agent number must be exactly 10 digits
+    if (agentNumber.length !== 10 || isNaN(agentNumber)) {
+        alert("Agent number must be 10 digits!");
+        return;
+    }
+
+    // 3️⃣ PIN must be exactly 4 digits
+    if (pin.length !== 4 || isNaN(pin)) {
+        alert("PIN must be 4 digits!");
+        return;
+    }
+
+    // 4️⃣ Check PIN correctness
+    if (Number(pin) !== vaildPin) {
+        alert("Invalid PIN!");
+        return;
+    }
+
+    // 5️⃣ Withdraw amount validation
+    if (transferAmount <= 10) {
+        alert("Please enter a valid amount greater than 10!");
+        return;
+    }
+    // 3. Balance check
+    if (transferAmount > currentBalance) {
+        alert("Balance কম আছে!");
+        return false;
+    }
+    // ✅ All validations passed, update balance
+    const newBalance = currentBalance - transferAmount;
+    balanceEl.innerText = newBalance;
+    alert("Money transferred successfully!");
+}
+
+// Attach the function to the button
+document.getElementById('transfer-btn').addEventListener('click', transferMoney);
+
+
+
+// get bonus function
+// get bonus function
+function getBonus() {
+    const getBonusCoupon = document.getElementById('get-bonus-coupon').value.trim();
+    const balanceEl = document.getElementById('balance');
+    let currentBalance = Number(balanceEl.innerText);
+
+    // Predefined coupons
+    const coupons = {
+        "BONUS100": 100,
+        "SAVE50": 50,
+        "EXTRA200": 200
+    };
+
+    // 1️⃣ Check if fields are empty
+    if (!getBonusCoupon) {
+        alert("Please enter a coupon code!");
+        return;
+    }
+
+    // 2️⃣ Check if coupon is valid
+    if (coupons[getBonusCoupon]) {
+        currentBalance += coupons[getBonusCoupon];
+        balanceEl.innerText = currentBalance;
+        alert(`🎉 Coupon applied! You got ${coupons[getBonusCoupon]} bonus.`);
+    } else {
+        alert("❌ Invalid coupon! Please try again.");
+    }
+}
+
+
+// Attach the function to the button
+
+document.getElementById('get-bonus-btn').addEventListener('click', getBonus);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Function to show form based on the clicked card
