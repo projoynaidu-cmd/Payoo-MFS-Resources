@@ -20,7 +20,7 @@ document.getElementById('addMoney-btn')// this will get the add money button
             return;
         }
         // account number length check (must be 10 digits)
-        if (accountNumber.length !== 10) { 
+        if (accountNumber.length !== 10) {
             alert('Account number must be 10 digits!');
             return;
         }
@@ -165,7 +165,6 @@ document.getElementById('transfer-btn').addEventListener('click', transferMoney)
 
 
 // get bonus function
-// get bonus function
 function getBonus() {
     const getBonusCoupon = document.getElementById('get-bonus-coupon').value.trim();
     const balanceEl = document.getElementById('balance');
@@ -240,94 +239,41 @@ document.getElementById('pay-bill-btn').addEventListener('click', payBill);
 
 
 // 📝 Transaction add funcation learning code 
-/**
- function addTransaction(type, amount) {
-     const historyTable = document.getElementById("transaction-history");
-     const row = document.createElement("tr");
-     // আজকের তারিখ নাও
-     const date = new Date().toLocaleString();
 
-     row.innerHTML = `
+function addTransaction(type, amount) {
+    const historyTable = document.getElementById("transaction-history");
+    const row = document.createElement("tr");
+    // আজকের তারিখ নাও
+    const date = new Date().toLocaleString();
+
+    row.innerHTML = `
          <td>${type}</td>
          <td>${amount}</td>
          <td>${date}</td>
      `;
-         historyTable.prepend(row); // নতুনটা উপরে দেখানোর জন্য prepend ব্যবহার করা হলো
+    historyTable.prepend(row); // নতুনটা উপরে দেখানোর জন্য prepend ব্যবহার করা হলো
 
-     const latestDiv = document.getElementById("latest-transaction-list");
-     const latestItem = document.createElement("div");
-     latestItem.innerHTML =`
+    const latestDiv = document.getElementById("latest-transaction-list");
+    const latestItem = document.createElement("div");
+    latestItem.innerHTML = `
          <div class="latest-transaction border-b py-2">
             <p><strong>${type}</strong></p>
              <p>Amount: ${amount}</p>
              <p class="text-sm text-gray-500">${date}</p>
          </div>
      `;
- latestDiv.prepend(latestItem);
+    latestDiv.prepend(latestItem);
 
- const latestItems = latestDiv.querySelectorAll(".latest-transaction");
- if (latestItems.length > 5) {
-     latestItems[latestItems.length - 1].remove();
+    const latestItems = latestDiv.querySelectorAll(".latest-transaction");
+    if (latestItems.length > 5) {
+        latestItems[latestItems.length - 1].remove();
 
 
- }
+    }
 
 }
 
- */
 
-
-// 📝 transation history function ai code 
-function addTransaction(type, amount) {
-    const date = new Date().toLocaleString();
-    const transaction = { type, amount, date }; // transaction object
-
-    // localStorage থেকে transactions নাও
-    let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-
-    // নতুন transaction add করো
-    transactions.push(transaction); // history এর জন্য push, newest at last
-
-    // Save to localStorage
-    localStorage.setItem("transactions", JSON.stringify(transactions));
-
-    // DOM update
-    const historyTable = document.getElementById("transaction-history");
-    const latestDiv = document.getElementById("latest-transaction-list");
-
-    // Clear current content
-    historyTable.innerHTML = "";
-    latestDiv.innerHTML = "";
-
-    // ১️⃣ Transaction History → সব দেখাবে
-    transactions.forEach(tx => {
-        const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${tx.type}</td>
-            <td>${tx.amount}</td>
-            <td>${tx.date}</td>
-        `;
-        historyTable.appendChild(row);
-    });
-
-    // ২️⃣ Latest Transactions → শুধু 5টা দেখাবে (নতুনগুলো উপরে)
-    transactions.slice(-5).reverse().forEach(tx => {
-        const latestItem = document.createElement("div");
-        latestItem.classList.add("latest-transaction", "border-b", "py-2");
-        latestItem.innerHTML = `
-            <p><strong>${tx.type}</strong></p>
-            <p>Amount: ${tx.amount}</p>
-            <p class="text-sm text-gray-500">${tx.date}</p>
-        `;
-        latestDiv.appendChild(latestItem);
-    });
-}
-
-// Page load এ old transactions দেখানোর জন্য
-document.addEventListener("DOMContentLoaded", () => {
-    const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-    transactions.forEach(tx => addTransaction(tx.type, tx.amount));
-});
 
 
 

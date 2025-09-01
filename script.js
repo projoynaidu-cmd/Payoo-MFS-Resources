@@ -1,6 +1,6 @@
 // Global user object
 const user = {
-    mobile: '01709437619',
+    mobile: '1234567890',
     password: '1234',
 };
 
@@ -12,6 +12,8 @@ const loginBtn = document.getElementById('login-btn')
     .addEventListener('click', (e) => {
         const mobile = document.getElementById('mobile-number').value.trim();
         const password = document.getElementById('pin-number').value.trim();
+
+
 
         if (mobile === user.mobile && password === user.password) {
             localStorage.setItem('user', JSON.stringify(user)) //this will store the data in the local storage

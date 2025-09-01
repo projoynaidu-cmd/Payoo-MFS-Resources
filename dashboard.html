@@ -49,7 +49,7 @@
 
         <!-- Right Side (Button) -->
         <button
-          class="btn btn-xl bg-gray-50 text-gray-600 border-2 border-gray-300 hover:bg-gray-200 cursor-pointer"
+          class="btn btn-xl bg-gray-100 text-gray-600 border-2 border-gray-300 hover:bg-gray-100 hover:border-blue-500 hover:text-blue-500 cursor-pointer"
         >
           <i class="fa-solid fa-right-from-bracket rotate-180 mr-1"></i> Logout
         </button>
@@ -173,29 +173,29 @@
 
             <!-- Select Bank -->
             <div class="form-control mb-4">
-              <label class="label">
-                <span class="label-text">Select Bank</span>
+              <label class="label ">
+                <span class="label-text ">Select Bank</span>
               </label>
-              <select id="bank-select" class="select select-bordered w-full">
+              <select id="bank-select" class="select select-bordered w-full bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white">
                 <option disabled selected>Choose Bank</option>
                 <option>DBBL</option>
                 <option>Islami Bank</option>
                 <option>City Bank</option>
                 <option>Brac Bank</option>
-              </select>
+              </select> 
             </div>
 
             <!-- Account Number -->
             <div class="form-control mb-4">
               <label class="label">
-                <span class="label-text">Bank Account Number</span>
+                <span class="label-text ">Bank Account Number</span>
               </label>
               <input
                 id="account-number"
                 type="number"
                 placeholder="Enter 10 digit number"
-                class="input input-bordered w-full"
-              />
+                class="input input-bordered w-full bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"     
+                />
             </div>
 
             <!-- Amount -->
@@ -207,7 +207,7 @@
                 id="addAmount"
                 type="number"
                 placeholder="Enter Amount to Add"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
 
@@ -220,7 +220,7 @@
                 id="pin"
                 type="number"
                 placeholder="Enter PIN"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
 
@@ -244,7 +244,7 @@
                 id="Agent_Number"
                 type="number"
                 placeholder="Enter 10 digit number"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
             <!-- Amount -->
@@ -256,7 +256,7 @@
                 id="withdrawAmount"
                 type="number"
                 placeholder="Add Amount to Cashout"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
             <!-- PIN -->
@@ -268,7 +268,7 @@
                 id="withdrawPin"
                 type="number"
                 placeholder="Enter PIN"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
             <!-- Submit Button -->
@@ -291,7 +291,7 @@
                 id="user-account-number"
                 type="number"
                 placeholder="Enter 10 digit number"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
             <!-- Amount -->
@@ -303,7 +303,7 @@
                 id="transferAmount"
                 type="number"
                 placeholder="Add Amount to Transfer"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
             <!-- PIN -->
@@ -315,7 +315,7 @@
                 id="teansferPin"
                 type="number"
                 placeholder="Enter PIN"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
             <!-- Submit Button -->
@@ -338,7 +338,7 @@
                 id="get-bonus-coupon"
                 type="text"
                 placeholder="Enter Coupon"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
             <!-- Submit Button -->
@@ -358,9 +358,9 @@
               <label class="label">
                 <span class="label-text capitalize">Select to Pay</span>
               </label>
-              <select id="pay-bill-name" class="select select-bordered w-full">
+              <select id="pay-bill-name" class="select select-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white">
                 <option disabled selected>Select Bank</option>
-                <option>Mobile Bill</option>
+                <option class="capitalize">Mobile Bill</option>
                 <option>Mobile Recharge</option>
                 <option>Water Bill</option>
                 <option>Electricity Bill</option>
@@ -375,7 +375,7 @@
                 id="billing-account-number"
                 type="number"
                 placeholder="Enter 10 digit number"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
             <!-- Amount -->
@@ -387,7 +387,7 @@
                 id="billing-amount"
                 type="number"
                 placeholder=" Amount to Pay"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
             <div class="form-control mb-6">
@@ -398,11 +398,11 @@
                 id="billing-pin"
                 type="number"
                 placeholder="Enter PIN"
-                class="input input-bordered w-full"
+                class="input input-bordered w-full  bg-slate-50 focus:outline-none focus:ring-2 focus:border-blue-500 focus:bg-white"
               />
             </div>
             <!-- Submit Button -->
-            <button id="pay-bill-btn" class="btn btn-primary w-full">
+            <button id="pay-bill-btn" class="btn btn-primary w-full capitalize">
               Pay Now
             </button>
           </div>
@@ -429,6 +429,6 @@
       </div>
     </main>
 
-    <script src="js/dashboard.js"></script>
+    <script src="dashboard.js"></script>
   </body>
 </html>
